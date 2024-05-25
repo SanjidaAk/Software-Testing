@@ -6,57 +6,75 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
+class Booking:
+    def __init__(self):
+        self.setup_logging()
+        self.driver = self.setup_driver()
+        self.open_browser()
 
-service = Service(executable_path='C:\\Windows\\chromedriver.exe')
-options = webdriver.ChromeOptions()
-options.add_experimental_option("detach", True)
+    def setup_logging(self):
+        logging.basicConfig(filename='flight.log', format='%(asctime)s: %(levelname)s: %(message)s',
+                            datefmt='%y/%m/%d %H:%M:%S', level=logging.INFO, filemode='w')
 
-driver = webdriver.Chrome(options=options, service=Service(ChromeDriverManager().install()))
+    def setup_driver(self):
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option("detach", True)
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(options=options, service=service)
+        return driver
 
-logging.basicConfig(filename='flight.log', format='%(asctime)s: %(levelname)s: %(message)s',
-                    datefmt='%y/%m/%d %H:%M:%S', level=logging.INFO, filemode='w')
+    def open_browser(self):
+        self.driver.get('https://katalon-demo-cura.herokuapp.com/')
+        self.driver.maximize_window()
+        logging.info('ChromeDriver was opened successfully')
 
-# Open the browser
-driver.get('https://katalon-demo-cura.herokuapp.com/')
-driver.maximize_window()
-logging.info('ChromeDriver was opened successfully')
+    def login(self, username, password):
+        element = self.driver.find_element(By.XPATH, "//a[@id='btn-make-appointment']")
+        element.click()
+        time.sleep(2)
 
-element = driver.find_element(By.XPATH, "//a[@id='btn-make-appointment']")
-element.click()
-time.sleep(2)
+        username_field = self.driver.find_element(By.ID, "txt-username")
+        username_field.send_keys(username)
 
-Username = driver.find_element(By.ID, "txt-username")
-Username.send_keys("John Doe")
+        password_field = self.driver.find_element(By.ID, "txt-password")
+        password_field.send_keys(password)
+        time.sleep(2)
 
-Password = driver.find_element(By.ID, "txt-password")
-Password.send_keys("ThisIsNotAPassword")
-time.sleep(2)
+        login_button = self.driver.find_element(By.ID, "btn-login")
+        login_button.click()
 
-Click_login_button = driver.find_element(By.ID, "btn-login")
-Click_login_button.click()
+    def make_appointment(self, facility, hospital_readmission, program, visit_date, comment):
+        sta_drpdwn = Select(self.driver.find_element(By.XPATH, "//select[@id='combo_facility']"))
+        sta_drpdwn.select_by_value(facility)
+        time.sleep(1)
 
-#Home page
-sta_drpdwn = Select(driver.find_element(By.XPATH,"//select[@id='combo_facility']"))
-sta_drpdwn.select_by_value("Seoul CURA Healthcare Center")
-time.sleep(1)
+        if hospital_readmission:
+            button = self.driver.find_element(By.NAME, "hospital_readmission")
+            button.click()
+            time.sleep(1)
 
-Button = driver.find_element(By.NAME, "hospital_readmission")
-Button.click()
-time.sleep(1)
+        radio_button = self.driver.find_element(By.XPATH, f"//input[@value='{program}']")
+        radio_button.click()
+        time.sleep(1)
 
-Radio_button = driver.find_element(By.XPATH, "//input[@value='Medicaid']")
-Radio_button.click()
-time.sleep(1)
+        date_picker = self.driver.find_element(By.ID, "txt_visit_date")
+        date_picker.send_keys(visit_date)
+        time.sleep(1)
 
-date_picker = driver.find_element(By.ID, "txt_visit_date")
-date_picker.send_keys("05/05/2024")
-time.sleep(1)
+        comment_text = self.driver.find_element(By.NAME, "comment")
+        comment_text.send_keys(comment)
+        time.sleep(1)
 
-Comment_text = driver.find_element(By.NAME, "comment")
-Comment_text.send_keys("Very Important")
-time.sleep(1)
+        booking_button = self.driver.find_element(By.ID, "btn-book-appointment")
+        booking_button.click()
 
-Booking_button = driver.find_element(By.ID, "btn-book-appointment")
-Booking_button.click()
+    def close_browser(self):
+        self.driver.quit()
 
-
+if __name__ == "__main__":
+    booking = Booking()
+    try:
+        booking.login("John Doe", "ThisIsNotAPassword")
+        booking.make_appointment("Seoul CURA Healthcare Center", True, "Medicaid", "05/05/2024", "Very Important")
+    finally:
+        booking.close_browser()

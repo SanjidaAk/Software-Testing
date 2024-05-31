@@ -8,7 +8,7 @@ This repository contains a list of all the projects completed during my Software
 
 -Test Metrics
 
--Jemeter
+-Jmeter
 
 -Load test
 

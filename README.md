@@ -1,21 +1,23 @@
 This repository contains a list of all the projects completed during my Software testing training. The projects were completed using a combination of testing techniques and test management tools.
 
--SDLC & STLC
+- SDLC & STLC
 
--Jira
+- Jira
 
--Test Case
+- Test Case
 
--Test Metrics
+- Test Metrics
 
--Jmeter
+- Jmeter
 
--Load test
+- Owasp zap
 
--API test
+- Load test
 
--Selenium Webdriver
+- API test
 
--Python
+- Selenium Webdriver
+
+- Python
 
 

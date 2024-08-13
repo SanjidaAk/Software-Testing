@@ -16,6 +16,8 @@ This repository contains a list of all the projects completed during my Software
 
 - API test
 
+- Postman 
+
 - Selenium Webdriver
 
 - Python

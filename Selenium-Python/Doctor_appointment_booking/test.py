@@ -53,4 +53,29 @@ class TestCuraApplication:
         """Test Case - Login with empty feilds."""
         self.button_click()
         self.login(" ", "Invalid")    
-        
+
+     """
+    #Home page
+    sta_drpdwn = Select(driver.find_element(By.XPATH,"//select[@id='combo_facility']"))
+    sta_drpdwn.select_by_value("Seoul CURA Healthcare Center")
+    time.sleep(1)
+    
+    Button = driver.find_element(By.NAME, "hospital_readmission")
+    Button.click()
+    time.sleep(1)
+    
+    Radio_button = driver.find_element(By.XPATH, "//input[@value='Medicaid']")
+    Radio_button.click()
+    time.sleep(1)
+    
+    date_picker = driver.find_element(By.ID, "txt_visit_date")
+    date_picker.send_keys("05/05/2024")
+    time.sleep(1)
+    
+    Comment_text = driver.find_element(By.NAME, "comment")
+    Comment_text.send_keys("Very Important")
+    time.sleep(1)
+    
+    Booking_button = driver.find_element(By.ID, "btn-book-appointment")
+    Booking_button.click()
+    """

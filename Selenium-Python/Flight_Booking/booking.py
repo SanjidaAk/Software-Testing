@@ -97,12 +97,12 @@ class FlightBooking:
     def continue_booking(self):
         continue_booking = self.driver.find_element(By.ID, 'itineraryBtn')
         continue_booking.location_once_scrolled_into_view
-        time.sleep(2)
+        time.sleep(3)
         continue_booking.click()
-        time.sleep(2)
+        time.sleep(3)
         continue_booking_2 = self.driver.find_element(By.ID, 'LoginContinueBtn_1')
         continue_booking_2.click()
-        time.sleep(2)
+        time.sleep(3)
 
     def save_screenshot(self, filename):
         self.driver.save_screenshot(filename)

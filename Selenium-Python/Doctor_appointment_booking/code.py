@@ -31,7 +31,7 @@ class Booking:
     def login(self, username, password):
         element = self.driver.find_element(By.XPATH, "//a[@id='btn-make-appointment']")
         element.click()
-        time.sleep(2)
+        time.sleep(3)
 
         username_field = self.driver.find_element(By.ID, "txt-username")
         username_field.send_keys(username)

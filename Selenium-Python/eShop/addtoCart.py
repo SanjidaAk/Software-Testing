@@ -46,7 +46,7 @@ class DemoWebShopAutomation:
             logging.info(f"Clicked checkbox at index: {index}")
 
     def click_element(self, xpath):
-        element = self.driver.find_element(By.XPATH, xpath)
+        element = self.driver.find_element(By.XPATH,xpath)
         element.click()
         logging.info(f"Clicked element with xpath: {xpath}")
 

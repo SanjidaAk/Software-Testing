@@ -55,7 +55,7 @@ class TestCuraApplication:
         self.login(" ", "Invalid")    
 
      """
-    #Home page
+    #Home page 1st
     sta_drpdwn = Select(driver.find_element(By.XPATH,"//select[@id='combo_facility']"))
     sta_drpdwn.select_by_value("Seoul CURA Healthcare Center")
     time.sleep(1)

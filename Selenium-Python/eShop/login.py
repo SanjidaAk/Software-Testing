@@ -10,7 +10,7 @@ def setUp(self):
     global browser
     browser = self.driver
 
-def test_login(self,inputemail,inputpassw):
+def test_login(self,inputemail, inputpassw):
     browser.get(LoginData.url)
     self.assertIn(LoginData.title, browser.title)
     browser.find_element(By.CLASS_NAME, LoginPage.login_btn).click()
@@ -23,7 +23,7 @@ def test_login(self,inputemail,inputpassw):
 def test_msg_login_success(self): 
     self.assertEqual(browser.current_url , LoginPage.successlogin_url)
 
-def test_msg_login_failed(self,message):
+def test_msg_login_failed(self, message):
     error = browser.find_element(By.CLASS_NAME, LoginPage.error_false_pass).text
     self.assertIn(message, error)
 

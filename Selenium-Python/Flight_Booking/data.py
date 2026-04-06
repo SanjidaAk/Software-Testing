@@ -3,7 +3,7 @@ if __name__ == "__main__":
     flight_booking.open_browser('https://www.cleartrip.com/')
     flight_booking.select_round_trip()
     flight_booking.select_city('FromTag', 'fra')
-    flight_booking.select_city('ToTag', 'san')
+    flight_booking.select_city('ToTag',  'san')
     flight_booking.select_date(9, 2)
     flight_booking.driver.find_element(By.CSS_SELECTOR, 'a.nextMonth').click()
     flight_booking.select_date(11, 21)

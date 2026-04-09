@@ -15,5 +15,5 @@ class LoginData():
         email_not_found = 'steele@gmail.com'
         passw = 'steeleangel8'
         passw_false = 'steeleangel'
-        false_pass_msg = 'Login was unsuccessful. Please correct the errors and try again.'
+        false_pass_msg = 'Login was  unsuccessful. Please correct the errors and try again.'
         email_notfound_msg = 'No customer account found'

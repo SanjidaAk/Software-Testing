@@ -17,7 +17,7 @@ class TestCuraApplication:
     def button_click(self):
         make_appointment = self.driver.find_element(By.XPATH, "//a[@id='btn-make-appointment']")
         make_appointment.click()
-        time.sleep(2)
+        time.sleep(3)
 
     def login(self, username, password):
         username_field = self.driver.find_element(By.ID, "txt-username")
